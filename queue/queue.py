@@ -14,7 +14,7 @@ Stretch: What if you could only use instances of your Stack class to implement t
          What would that look like? How many Stacks would you need? Try it!
 """
 
-from linked_list import Node, LinkedList
+from linked_list import LinkedList, Node
 
 
 class Queue:
@@ -37,4 +37,4 @@ class Queue:
             return None
         else:
             self.size -= 1
-            return self.storage.remove_at_end()
+            return self.storage.remove_from_head()
