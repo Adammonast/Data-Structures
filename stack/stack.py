@@ -20,16 +20,13 @@ class Stack:
         self.storage = LinkedList()
 
     def __len__(self):
-        pass
         return self.size
 
     def push(self, value):
-        pass
         self.storage.add_to_end(value)
         self.size += 1
 
     def pop(self):
-        pass
         if not self.storage.head:
             return None
         else:
