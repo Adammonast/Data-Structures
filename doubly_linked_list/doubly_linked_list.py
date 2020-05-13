@@ -56,7 +56,8 @@ class DoublyLinkedList:
     the old head node's previous pointer accordingly."""
 
     def add_to_head(self, value):
-        # create new node from value being passed in
+
+        # create a new node from the value being passed in
         new_node = ListNode(value)
 
         # increase the list's length by 1
@@ -87,26 +88,67 @@ class DoublyLinkedList:
     the old tail node's next pointer accordingly."""
 
     def add_to_tail(self, value):
-        pass
+
+        # create a new node from the value being passed in
+        new_node = ListNode(value)
+
+        # increase the list's length by 1
+        self.length += 1
+
+        # if the tail/head are None, set them both to the newly created node
+        if not self.head and not self.tail:
+            self.head = new_node
+            self.tail = new_node
+
+        # three step process:
+        # if else, set the previous node on the new node to the tail, set the next on the tail to the new node, and set the tail to become the new node
+        else:
+            new_node.prev = self.tail
+            self.tail.next = new_node
+            self.tail = new_node
 
     """Removes the List's current tail node, making the 
     current tail's previous node the new tail of the List.
     Returns the value of the removed Node."""
 
     def remove_from_tail(self):
-        pass
+
+        # select current value from from tail
+        value = self.tail.value
+
+        # on the list, call the delete function to remove the head
+        self.delete(self.tail)
+
+        # return the value
+        return value
 
     """Removes the input node from its current spot in the 
     List and inserts it as the new head node of the List."""
 
     def move_to_front(self, node):
-        pass
+
+        # select the value from the node
+        value = node.value
+
+        # delete
+        self.delete(node)
+
+        # add the node at the head of the list
+        self.add_to_tail(value)
 
     """Removes the input node from its current spot in the 
     List and inserts it as the new tail node of the List."""
 
     def move_to_end(self, node):
-        pass
+
+        # select the value from the node
+        value = node.value
+
+        # delete
+        self.delete(node)
+
+        # add the node at the end of the list
+        self.add_to_tail(value)
 
     """Removes a node from the list and handles cases where
     the node was the head or the tail"""
