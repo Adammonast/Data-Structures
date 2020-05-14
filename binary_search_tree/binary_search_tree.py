@@ -1,3 +1,6 @@
+from queue import Queue
+
+
 """
 Binary search trees are a data structure that enforce an ordering over 
 the data they store. That ordering in turn makes it a lot more efficient 
@@ -19,12 +22,12 @@ class BinarySearchTree:
 
     # Insert the given value into the tree
     def insert(self, value):
-        if self.value > value:
+        if value < self.value:
             if self.left:
                 self.left.insert(value)
             else:
                 self.left = BinarySearchTree(value)
-        elif self.value <= value:
+        elif value >= self.value:
             if self.right:
                 self.right.insert(value)
             else:
@@ -49,7 +52,7 @@ class BinarySearchTree:
 
     # Return the maximum value found in the tree
     def get_max(self):
-        # right side is possibly bequal to or greater than the current root
+        # right side is possibly equal to or greater than the current root
         if self.right:
             # repeat the function if there's a right node
             return self.right.get_max()
@@ -71,12 +74,32 @@ class BinarySearchTree:
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
-        pass
+
+        # check if left node exists
+        if self.left:
+            self.left.in_order_print(self.left)
+        print(node.value)
+        # check for right now
+        if self.right:
+            self.right.in_order_print(self.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
-        pass
+
+        # contains the nodes in their specific order
+        queue = Queue()
+        # add the node we're currently on
+        queue.enqueue(node)
+        # if there's elements present, loop through them
+        while queue.size > 0:
+            current = queue.deque()
+            if current is not None:
+                print(current.value)
+            if current.left:
+                queue.enqueue(current.left)
+            if current.right:
+                queue.enqueue(current.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
