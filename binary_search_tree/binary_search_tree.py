@@ -34,15 +34,37 @@ class BinarySearchTree:
     # False if it does not
 
     def contains(self, target):
-        pass
+        # when searching begins, self becomes the root
+        # evaluate target vs sef
+        if self.value == target:
+            return True
+        if target < self.value:
+            if not self.left:
+                return False
+            return self.left.contains(target)
+        else:
+            if not self.right:
+                return False
+            return self.right.contains(target)
 
     # Return the maximum value found in the tree
     def get_max(self):
-        pass
+        # right side is possibly bequal to or greater than the current root
+        if self.right:
+            # repeat the function if there's a right node
+            return self.right.get_max()
+        else:
+            # max value is found if there isn't a right node
+            return self.value
 
     # Call the function `fn` on the value of each node
+
     def for_each(self, fn):
-        pass
+        fn(self.value)
+        if self.left:
+            self.left.for_each(fn)
+        if self.right:
+            self.right.for_each(fn)
 
     # Part 2 -----------------------
 
