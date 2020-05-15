@@ -13,8 +13,9 @@ return elements in First In First Out order.
 Stretch: What if you could only use instances of your Stack class to implement the Queue?
          What would that look like? How many Stacks would you need? Try it!
 """
-
-from doubly_linked_list import DoublyLinkedList
+import sys
+sys.path.append('../')
+from doubly_linked_list.doubly_linked_list import DoublyLinkedList
 
 
 class Queue:

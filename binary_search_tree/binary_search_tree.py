@@ -1,5 +1,8 @@
-from queue import Queue
-
+import sys
+sys.path.append('../')
+from ls_queue.queue import Queue
+from ls_stack.stack import Stack
+from collections import deque
 
 """
 Binary search trees are a data structure that enforce an ordering over 
@@ -93,7 +96,7 @@ class BinarySearchTree:
         queue.enqueue(node)
         # if there's elements present, loop through them
         while queue.size > 0:
-            current = queue.deque()
+            current = queue.dequeue()
             if current is not None:
                 print(current.value)
             if current.left:
@@ -104,7 +107,18 @@ class BinarySearchTree:
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
-        pass
+        stack = Stack()
+        # root node
+        stack.push(self)
+        # if the stack still contains elements, loop through them
+        while len(stack) > 0:
+            current = stack.pop()
+            if current is not None:
+                print(current.value)
+            if current.right:
+                stack.push(current.right)
+            if current.left:
+                stack.push(current.left)
 
     # Stretch Goals -------------------------
     # Note: Research may be required
